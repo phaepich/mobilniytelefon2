@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/network_fragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="270dp">
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/ipText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="IP: ..."
+        android:textAlignment="center" />
+
+    <TextView
+        android:id="@+id/cityText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="City: ..."
+        android:textAlignment="center" />
+
+    <TextView
+        android:id="@+id/regionText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Region: ..."
+        android:textAlignment="center" />
+
+    <TextView
+        android:id="@+id/countryText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Country: ..."
+        android:textAlignment="center" />
+</LinearLayout>

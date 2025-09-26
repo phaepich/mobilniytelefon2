@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="16dp"
+    app:cardElevation="4dp"
+    app:cardCornerRadius="12dp"
+    app:strokeWidth="1dp"
+    app:strokeColor="?android:attr/colorPrimary">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="24dp">
+
+        <TextView
+            android:id="@+id/text_data"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="monospace"
+            android:text="Люблю инфобез. Ломать что-то там прикольно, а еще занимательно расследовать цепочку действий злоумышленников. Иногда там попадаются совсем нетипичные решения, которые можно взять себе на вооружение."
+            android:textAppearance="?attr/textAppearanceBodyLarge"
+            android:textColor="?android:attr/textColorPrimary"
+            android:textSize="16sp"
+            android:typeface="monospace" />
+    </ScrollView>
+</com.google.android.material.card.MaterialCardView>
+

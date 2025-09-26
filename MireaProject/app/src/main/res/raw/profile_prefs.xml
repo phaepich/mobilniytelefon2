@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='utf-8' standalone='yes' ?>
+<map>
+    <string name="name">Попов А.А.</string>
+    <int name="age" value="21" />
+    <string name="email">popov.a.a7@edu.mirea.ru</string>
+</map>

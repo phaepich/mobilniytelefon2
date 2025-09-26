@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:orientation="vertical">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="378dp"
+        android:layout_height="348dp">
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <EditText
+        android:id="@+id/editTextFilm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Любимый фильм/сериал" />
+
+    <EditText
+        android:id="@+id/editTextGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Номер группы" />
+
+    <EditText
+        android:id="@+id/editTextNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Номер по списку"
+        android:inputType="number" />
+
+    <Button
+        android:id="@+id/buttonSave"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Сохранить" />
+
+</LinearLayout>

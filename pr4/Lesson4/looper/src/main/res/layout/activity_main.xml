@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="24dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/editAge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Введите возраст"
+        android:inputType="number" />
+
+    <EditText
+        android:id="@+id/editJob"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Кем вы работаете" />
+
+    <Button
+        android:id="@+id/buttonLooper"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Обработать данные"
+        android:layout_marginTop="16dp" />
+
+    <TextView
+        android:id="@+id/textStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ожидание..."
+        android:layout_marginTop="24dp" />
+</LinearLayout>
+
