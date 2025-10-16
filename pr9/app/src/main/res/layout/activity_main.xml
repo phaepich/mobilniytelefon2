@@ -1,35 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:orientation="vertical"
     android:gravity="center"
-    android:orientation="horizontal"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <EditText
         android:id="@+id/editTextMovie"
+        android:hint="Введите название фильма"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Введите название фильма" />
+        android:layout_height="wrap_content" />
 
     <Button
         android:id="@+id/buttonSaveMovie"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Сохранить фильм" />
+        android:text="Сохранить"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <Button
         android:id="@+id/buttonGetMovie"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Получить фильм" />
+        android:text="Показать фильм"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <TextView
-        android:id="@+id/textViewResult"
+        android:id="@+id/textViewMovie"
+        android:textSize="18sp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="20dp"
-        android:text="Результат"
-        android:textSize="18sp" />
-
+        android:gravity="center_horizontal"
+        android:paddingTop="10dp" />
 </LinearLayout>

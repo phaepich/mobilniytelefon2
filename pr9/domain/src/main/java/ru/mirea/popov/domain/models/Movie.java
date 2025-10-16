@@ -1,6 +1,5 @@
 package ru.mirea.popov.domain.models;
 
-
 public class Movie {
     private int id;
     private String name;
@@ -12,5 +11,9 @@ public class Movie {
 
     public String getName() {
         return name;
+    }
+
+    public int getId() {
+        return id;
     }
 }
