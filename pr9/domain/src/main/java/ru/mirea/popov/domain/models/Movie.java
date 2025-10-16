@@ -1,4 +1,4 @@
-package ru.mirea.popov.Lesson9.domain.models;
+package ru.mirea.popov.domain.models;
 
 
 public class Movie {

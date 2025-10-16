@@ -1,7 +1,7 @@
-package ru.mirea.popov.Lesson9.data.repository;
+package ru.mirea.popov.data.repository;
 
-import ru.mirea.popov.Lesson9.domain.models.Movie;
-import ru.mirea.popov.Lesson9.domain.repository.MovieRepository;
+import ru.mirea.popov.domain.models.Movie;
+import ru.mirea.popov.domain.repository.MovieRepository;
 
 public class MovieRepositoryImpl implements MovieRepository {
     private Movie movie;

@@ -1,7 +1,7 @@
-package ru.mirea.popov.Lesson9.domain.usecases;
+package ru.mirea.popov.domain.usecases;
 
-import ru.mirea.popov.Lesson9.domain.models.Movie;
-import ru.mirea.popov.Lesson9.domain.repository.MovieRepository;
+import ru.mirea.popov.domain.models.Movie;
+import ru.mirea.popov.domain.repository.MovieRepository;
 
 public class GetFavoriteFilmUseCase {
     private final MovieRepository movieRepository;

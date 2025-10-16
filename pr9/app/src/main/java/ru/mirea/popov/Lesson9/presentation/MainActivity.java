@@ -9,11 +9,11 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import ru.mirea.popov.Lesson9.R;
-import ru.mirea.popov.Lesson9.data.repository.MovieRepositoryImpl;
-import ru.mirea.popov.Lesson9.domain.models.Movie;
-import ru.mirea.popov.Lesson9.domain.repository.MovieRepository;
-import ru.mirea.popov.Lesson9.domain.usecases.GetFavoriteFilmUseCase;
-import ru.mirea.popov.Lesson9.domain.usecases.SaveMovieToFavoriteUseCase;
+import ru.mirea.popov.data.repository.MovieRepositoryImpl;
+import ru.mirea.popov.domain.models.Movie;
+import ru.mirea.popov.domain.repository.MovieRepository;
+import ru.mirea.popov.domain.usecases.GetFavoriteFilmUseCase;
+import ru.mirea.popov.domain.usecases.SaveMovieToFavoriteUseCase;
 
 public class MainActivity extends AppCompatActivity {
     private MovieRepository movieRepository;
