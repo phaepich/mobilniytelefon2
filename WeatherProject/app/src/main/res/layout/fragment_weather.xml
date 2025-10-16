@@ -1,0 +1,52 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="78dp">
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/textCity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="Москва"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/textTemp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Температура: --°C"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/textDesc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Описание: --" />
+
+    <Button
+        android:id="@+id/buttonRefresh"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Обновить" />
+
+    <Button
+        android:id="@+id/buttonHistory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="История" />
+
+    <TextView
+        android:id="@+id/textHistory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="История запросов:" />
+
+</LinearLayout>

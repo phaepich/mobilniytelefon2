@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1002235650633",
+    "project_id": "weather-95b3c",
+    "storage_bucket": "weather-95b3c.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1002235650633:android:6ea2efb7f6ad6e21c95598",
+        "android_client_info": {
+          "package_name": "ru.mirea.popov.weatherproject"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAdNYXk4wvFWCDnkRY52SkzlReLNt_kFpY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
