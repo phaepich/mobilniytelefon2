@@ -45,7 +45,6 @@ public class WeatherRepositoryImpl implements WeatherRepository {
         prefs.saveCity(city);
     }
 
-    // 👇 добавляем доступ к истории
     public List<WeatherEntity> getLastWeather() {
         return db.weatherDao().getLastWeather();
     }
