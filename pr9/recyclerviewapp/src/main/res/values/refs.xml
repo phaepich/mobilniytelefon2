@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <drawable name="rome" />
+    <drawable name="columbus" />
+    <drawable name="france_revolution" />
+    <drawable name="berlin_wall" />
+    <drawable name="gagarin" />
+</resources>
