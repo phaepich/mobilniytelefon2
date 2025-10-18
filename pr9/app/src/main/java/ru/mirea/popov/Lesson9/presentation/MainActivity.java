@@ -5,6 +5,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import ru.mirea.popov.Lesson9.R;
 import ru.mirea.popov.data.repository.MovieRepositoryImpl;
@@ -14,30 +15,31 @@ import ru.mirea.popov.domain.usecases.GetFavoriteFilmUseCase;
 import ru.mirea.popov.domain.usecases.SaveMovieToFavoriteUseCase;
 
 public class MainActivity extends AppCompatActivity {
+
+    private MainViewModel mainViewModel;
+    private EditText editTextMovie;
+    private TextView textViewMovie;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        EditText editTextMovie = findViewById(R.id.editTextMovie);
-        TextView textViewMovie = findViewById(R.id.textViewMovie);
+        editTextMovie = findViewById(R.id.editTextMovie);
+        textViewMovie = findViewById(R.id.textViewMovie);
         Button buttonSave = findViewById(R.id.buttonSaveMovie);
         Button buttonGet = findViewById(R.id.buttonGetMovie);
 
-        SharedPrefMovieStorage storage = new SharedPrefMovieStorage(this);
-        MovieRepositoryImpl repository = new MovieRepositoryImpl(storage);
+        mainViewModel = new ViewModelProvider(this, new ViewModelFactory(this))
+                .get(MainViewModel.class);
 
-        SaveMovieToFavoriteUseCase saveUseCase = new SaveMovieToFavoriteUseCase(repository);
-        GetFavoriteFilmUseCase getUseCase = new GetFavoriteFilmUseCase(repository);
+        mainViewModel.getFavoriteMovie().observe(this, text -> textViewMovie.setText(text));
 
         buttonSave.setOnClickListener(v -> {
-            boolean result = saveUseCase.execute(new Movie(1, editTextMovie.getText().toString()));
-            textViewMovie.setText("сохранено: " + result);
+            String name = editTextMovie.getText().toString();
+            mainViewModel.saveMovie(new Movie(1, name));
         });
 
-        buttonGet.setOnClickListener(v -> {
-            Movie movie = getUseCase.execute();
-            textViewMovie.setText("ииииз памяти: " + movie.getName());
-        });
+        buttonGet.setOnClickListener(v -> mainViewModel.loadMovie());
     }
 }
