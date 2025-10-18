@@ -19,9 +19,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "MovieProject"
-include(":app")
-include(":app:movieproject")
-include(":data")
-include(":domain")
-include(":scrollviewapp")
+rootProject.name = "RecyclerViewProject"
+include(":recyclerviewapp")
+ 
