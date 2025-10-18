@@ -1,6 +1,8 @@
 package ru.mirea.popov.data.repository;
 
 import android.content.Context;
+
+import androidx.lifecycle.LiveData;
 import androidx.room.Room;
 
 import org.json.JSONObject;
@@ -25,18 +27,23 @@ public class WeatherRepositoryImpl implements WeatherRepository {
         this.db = Room.databaseBuilder(context, AppDatabase.class, "weather_db").build();
     }
 
+    public LiveData<List<WeatherEntity>> getAllWeatherLive() {
+        return db.weatherDao().getAllWeatherLive();
+    }
+
+
     @Override
     public WeatherInfo getWeather(String city) {
         JSONObject json = api.getWeatherData(city);
-        if (json == null) return new WeatherInfo(city, 0, "Ошибка сети");
+        if (json == null) return new WeatherInfo(city, 0, "ошибка сети");
         try {
             JSONObject current = json.getJSONObject("current_weather");
             double temp = current.getDouble("temperature");
-            WeatherInfo info = new WeatherInfo(city, temp, "Погода получена");
+            WeatherInfo info = new WeatherInfo(city, temp, "погода получена");
             db.weatherDao().insert(new WeatherEntity(city, temp, info.getDescription(), LocalDate.now().toString()));
             return info;
         } catch (Exception e) {
-            return new WeatherInfo(city, 0, "Ошибка парсинга");
+            return new WeatherInfo(city, 0, "ошибка парсинга");
         }
     }
 

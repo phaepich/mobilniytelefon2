@@ -11,6 +11,10 @@ public interface RoomWeatherDao {
     @Insert
     void insert(WeatherEntity weather);
 
-    @Query("SELECT * FROM weather_history ORDER BY id DESC LIMIT 5")
+    @Query("SELECT * FROM weather_history ORDER BY id DESC LIMIT 20")
     List<WeatherEntity> getLastWeather();
+
+    @Query("SELECT * FROM weather_history ORDER BY id DESC")
+    androidx.lifecycle.LiveData<List<WeatherEntity>> getAllWeatherLive();
 }
+

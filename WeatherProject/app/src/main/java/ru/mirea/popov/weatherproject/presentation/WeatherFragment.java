@@ -1,33 +1,27 @@
 package ru.mirea.popov.weatherproject.presentation;
 
 import android.os.Bundle;
-import android.view.*;
-import android.widget.*;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ProgressBar;
+import android.widget.TextView;
+
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
-import java.util.List;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ExecutorService;
-import android.os.Handler;
-import android.os.Looper;
+import java.time.LocalTime;
 
-import ru.mirea.popov.data.db.WeatherEntity;
-import ru.mirea.popov.data.network.WeatherApi;
-import ru.mirea.popov.data.repository.WeatherRepositoryImpl;
-import ru.mirea.popov.data.storage.PreferencesStorage;
-import ru.mirea.popov.domain.usecases.GetWeatherUseCase;
-import ru.mirea.popov.domain.usecases.SaveFavoriteCityUseCase;
 import ru.mirea.popov.domain.models.WeatherInfo;
 import ru.mirea.popov.weatherproject.R;
 
 public class WeatherFragment extends Fragment {
-    private TextView textCity, textTemp, textDesc, textHistory;
+
+    private WeatherViewModel vm;
+    private TextView textCity, textTemp, textDesc, textUpdated;
+    private ProgressBar progressBar;
     private Button buttonRefresh, buttonHistory;
-    private GetWeatherUseCase getWeatherUseCase;
-    private SaveFavoriteCityUseCase saveFavoriteCityUseCase;
-    private WeatherRepositoryImpl repository;
-    private ExecutorService executor;
-    private Handler mainHandler;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -36,51 +30,40 @@ public class WeatherFragment extends Fragment {
         textCity = view.findViewById(R.id.textCity);
         textTemp = view.findViewById(R.id.textTemp);
         textDesc = view.findViewById(R.id.textDesc);
-        textHistory = view.findViewById(R.id.textHistory);
+        textUpdated = view.findViewById(R.id.textUpdated);
+        progressBar = view.findViewById(R.id.progressBar);
         buttonRefresh = view.findViewById(R.id.buttonRefresh);
         buttonHistory = view.findViewById(R.id.buttonHistory);
 
-        PreferencesStorage prefs = new PreferencesStorage(requireContext());
-        repository = new WeatherRepositoryImpl(requireContext(), new WeatherApi(), prefs);
-        getWeatherUseCase = new GetWeatherUseCase(repository);
-        saveFavoriteCityUseCase = new SaveFavoriteCityUseCase(repository);
+        vm = new ViewModelProvider(requireActivity(), new WeatherViewModelFactory(requireContext()))
+                .get(WeatherViewModel.class);
 
-        executor = Executors.newSingleThreadExecutor();
-        mainHandler = new Handler(Looper.getMainLooper());
+        vm.getWeather().observe(getViewLifecycleOwner(), this::updateUI);
+        vm.getLoading().observe(getViewLifecycleOwner(), isLoading -> {
+            progressBar.setVisibility(isLoading ? View.VISIBLE : View.GONE);
+            buttonRefresh.setEnabled(!isLoading);
+        });
 
-        buttonRefresh.setOnClickListener(v -> updateWeather(prefs.getCity()));
+        buttonRefresh.setOnClickListener(v -> vm.loadWeather("Москва"));
 
-        buttonHistory.setOnClickListener(v -> showHistory());
+        buttonHistory.setOnClickListener(v -> openHistory());
 
         return view;
     }
 
-    private void updateWeather(String city) {
-        textDesc.setText("Загружаем погоду...");
-
-        executor.execute(() -> {
-            WeatherInfo info = getWeatherUseCase.execute(city);
-            mainHandler.post(() -> {
-                textCity.setText(info.getCity());
-                textTemp.setText("Температура: " + info.getTemperature() + "°C");
-                textDesc.setText(info.getDescription());
-                saveFavoriteCityUseCase.execute(info.getCity());
-            });
-        });
+    private void updateUI(WeatherInfo info) {
+        if (info == null) return;
+        textCity.setText(info.getCity());
+        textTemp.setText(String.format("%.1f°C", info.getTemperature()));
+        textDesc.setText(info.getDescription());
+        textUpdated.setText("последнее обновление: " + LocalTime.now().withNano(0).toString());
     }
 
-    private void showHistory() {
-        executor.execute(() -> {
-            List<WeatherEntity> list = repository.getLastWeather();
-            mainHandler.post(() -> {
-                StringBuilder sb = new StringBuilder();
-                for (WeatherEntity w : list) {
-                    sb.append(w.city)
-                            .append(": ").append(w.temperature)
-                            .append("°C (").append(w.date).append(")\n");
-                }
-                textHistory.setText(sb.toString());
-            });
-        });
+    private void openHistory() {
+        requireActivity().getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragmentContainer, new HistoryFragment())
+                .addToBackStack(null)
+                .commit();
     }
 }
