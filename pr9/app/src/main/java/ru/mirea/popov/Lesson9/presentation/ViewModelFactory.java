@@ -4,10 +4,7 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
-
 import ru.mirea.popov.data.repository.MovieRepositoryImpl;
-import ru.mirea.popov.data.storage.SharedPrefMovieStorage;
-import ru.mirea.popov.data.storage.MovieStorage;
 import ru.mirea.popov.domain.repository.MovieRepository;
 
 public class ViewModelFactory implements ViewModelProvider.Factory {
@@ -20,8 +17,7 @@ public class ViewModelFactory implements ViewModelProvider.Factory {
     @NonNull
     @Override
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
-        MovieStorage storage = new SharedPrefMovieStorage(context);
-        MovieRepository repo = new MovieRepositoryImpl(storage);
-        return (T) new MainViewModel(repo);
+        MovieRepository repository = new MovieRepositoryImpl(context);
+        return (T) new MainViewModel(repository);
     }
 }

@@ -1,17 +1,25 @@
 package ru.mirea.popov.data.storage.models;
 
 public class Movie {
-    private int id;
-    private String name;
-    private String localDate;
+    private final String title;
+    private final String description;
+    private final String posterName; /
 
-    public Movie(int id, String name, String localDate) {
-        this.id = id;
-        this.name = name;
-        this.localDate = localDate;
+    public Movie(String title, String description, String posterName) {
+        this.title = title;
+        this.description = description;
+        this.posterName = posterName;
     }
 
-    public String getName() { return name; }
-    public int getId() { return id; }
-    public String getLocalDate() { return localDate; }
+    public String getTitle() {
+        return title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getPosterName() {
+        return posterName;
+    }
 }
