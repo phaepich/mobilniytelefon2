@@ -19,4 +19,13 @@ public class PreferencesStorage {
     public String getCity() {
         return sharedPreferences.getString(KEY_CITY, "Москва");
     }
+    public void putString(String key, String value) {
+        sharedPreferences.edit().putString(key, value).apply();
+    }
+
+    public String getString(String key, String defValue) {
+        return sharedPreferences.getString(key, defValue);
+    }
+
+
 }
