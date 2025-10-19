@@ -1,19 +1,17 @@
 package ru.mirea.popov.domain.models;
 
 public class Movie {
-    private int id;
-    private String name;
+    private final String title;
+    private final String genre;
+    private final int year;
 
-    public Movie(int id, String name) {
-        this.id = id;
-        this.name = name;
+    public Movie(String title, String genre, int year) {
+        this.title = title;
+        this.genre = genre;
+        this.year = year;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public int getId() {
-        return id;
-    }
+    public String getTitle() { return title; }
+    public String getGenre() { return genre; }
+    public int getYear() { return year; }
 }

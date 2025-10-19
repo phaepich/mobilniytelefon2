@@ -1,45 +1,30 @@
 package ru.mirea.popov.Lesson9.presentation;
 
 import android.os.Bundle;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
-
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import ru.mirea.popov.Lesson9.presentation.MainViewModel;
 import ru.mirea.popov.Lesson9.R;
-import ru.mirea.popov.data.repository.MovieRepositoryImpl;
-import ru.mirea.popov.data.storage.SharedPrefMovieStorage;
-import ru.mirea.popov.domain.models.Movie;
-import ru.mirea.popov.domain.usecases.GetFavoriteFilmUseCase;
-import ru.mirea.popov.domain.usecases.SaveMovieToFavoriteUseCase;
 
 public class MainActivity extends AppCompatActivity {
 
-    private MainViewModel mainViewModel;
-    private EditText editTextMovie;
-    private TextView textViewMovie;
+    private MainViewModel viewModel;
+    private MovieAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        editTextMovie = findViewById(R.id.editTextMovie);
-        textViewMovie = findViewById(R.id.textViewMovie);
-        Button buttonSave = findViewById(R.id.buttonSaveMovie);
-        Button buttonGet = findViewById(R.id.buttonGetMovie);
+        RecyclerView recyclerView = findViewById(R.id.recyclerViewMovies);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        adapter = new MovieAdapter();
+        recyclerView.setAdapter(adapter);
 
-        mainViewModel = new ViewModelProvider(this, new ViewModelFactory(this))
+        viewModel = new ViewModelProvider(this, new ViewModelFactory())
                 .get(MainViewModel.class);
-
-        mainViewModel.getFavoriteMovie().observe(this, text -> textViewMovie.setText(text));
-
-        buttonSave.setOnClickListener(v -> {
-            String name = editTextMovie.getText().toString();
-            mainViewModel.saveMovie(new Movie(1, name));
-        });
-
-        buttonGet.setOnClickListener(v -> mainViewModel.loadMovie());
+        viewModel.getMovies().observe(this, movies -> adapter.setItems(movies));
     }
 }
