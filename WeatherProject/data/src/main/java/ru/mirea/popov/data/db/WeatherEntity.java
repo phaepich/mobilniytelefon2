@@ -11,11 +11,13 @@ public class WeatherEntity {
     public double temperature;
     public String description;
     public String date;
+    public String icon;
 
-    public WeatherEntity(String city, double temperature, String description, String date) {
+    public WeatherEntity(String city, double temperature, String description, String date, String icon) {
         this.city = city;
         this.temperature = temperature;
         this.description = description;
         this.date = date;
+        this.icon = icon;
     }
 }

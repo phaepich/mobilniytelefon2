@@ -12,6 +12,11 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <ImageView
+        android:id="@+id/imageWeatherIcon"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        android:layout_marginBottom="12dp" />
     <TextView
         android:id="@+id/textCity"
         android:layout_width="wrap_content"
