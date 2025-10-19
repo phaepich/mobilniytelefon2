@@ -7,3 +7,8 @@
 [Практика 3](https://github.com/phaepich/mobilniytelefon2/blob/main/pr3/README.md) 
 
 [Практика 4](https://github.com/phaepich/mobilniytelefon2/blob/main/pr4/README.md) 
+
+[Практика 5](https://github.com/phaepich/mobilniytelefon2/blob/main/pr5/README.md) 
+
+[Практика 6](https://github.com/phaepich/mobilniytelefon2/blob/main/pr6/README.md) 
+
