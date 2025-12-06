@@ -12,6 +12,8 @@ import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
 
 import com.squareup.picasso.Picasso;
 
@@ -40,9 +42,11 @@ public class WeatherFragment extends Fragment {
         buttonRefresh = view.findViewById(R.id.buttonRefresh);
         buttonHistory = view.findViewById(R.id.buttonHistory);
 
-        vm = new ViewModelProvider(requireActivity(), new WeatherViewModelFactory(requireContext())).get(WeatherViewModel.class);
+        vm = new ViewModelProvider(requireActivity(), new WeatherViewModelFactory(requireContext()))
+                .get(WeatherViewModel.class);
 
         vm.getWeather().observe(getViewLifecycleOwner(), this::updateUI);
+
         vm.getLoading().observe(getViewLifecycleOwner(), isLoading -> {
             progressBar.setVisibility(isLoading ? View.VISIBLE : View.GONE);
             buttonRefresh.setEnabled(!isLoading);
@@ -52,6 +56,7 @@ public class WeatherFragment extends Fragment {
             Log.d("WeatherAPI", "нажата кнопка обновить");
             vm.loadWeatherFromApi("Москва");
         });
+
         buttonHistory.setOnClickListener(v -> openHistory());
 
         return view;
@@ -70,10 +75,7 @@ public class WeatherFragment extends Fragment {
     }
 
     private void openHistory() {
-        requireActivity().getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.fragmentContainer, new HistoryFragment())
-                .addToBackStack(null)
-                .commit();
+        NavController navController = NavHostFragment.findNavController(this);
+        navController.navigate(R.id.historyFragment);
     }
 }
