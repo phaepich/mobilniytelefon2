@@ -12,4 +12,4 @@
 
 [Практика 6](https://github.com/phaepich/mobilniytelefon2/blob/main/pr6/README.md) 
 
-[Практика 6](https://github.com/phaepich/mobilniytelefon2/blob/main/pr7/README.md) 
+[Практика 7](https://github.com/phaepich/mobilniytelefon2/blob/main/pr7/README.md) 
